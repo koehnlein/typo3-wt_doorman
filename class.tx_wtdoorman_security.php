@@ -122,7 +122,7 @@ class tx_wtdoorman_security {
 			case 'text': // should be text
 
 				// 1. disable XSS
-				if (method_exists('t3lib_div', 'removeXSS')) { // if removeXSS is available
+				if (method_exists('TYPO3\\CMS\\Core\\Utility\\GeneralUtility', 'removeXSS')) { // if removeXSS is available
 					$string = \TYPO3\CMS\Core\Utility\GeneralUtility::removeXSS($string); // add removeXSS
 				} else { // removeXSS not available (on a very old T3 version maybe)
 					$string = $this->removeXSS->RemoveXSS($string); // use own removeXSS
@@ -138,7 +138,7 @@ class tx_wtdoorman_security {
 				break;
 				
 			case 'removeXSS': // change string with htmlentities
-				if (method_exists('t3lib_div', 'removeXSS')) { // if removeXSS is available
+				if (method_exists('TYPO3\\CMS\\Core\\Utility\\GeneralUtility', 'removeXSS')) { // if removeXSS is available
 					$string = \TYPO3\CMS\Core\Utility\GeneralUtility::removeXSS($string); // add removeXSS
 				} else { // removeXSS not available (on a very old T3 version maybe)
 					$string = $this->removeXSS->RemoveXSS($string); // use own removeXSS

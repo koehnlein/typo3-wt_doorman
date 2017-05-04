@@ -48,7 +48,7 @@ class tx_wtdoorman_pivars_check {
 		$this->confArr = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['wt_doorman']); // Get backandconfig
 		$this->removeXSS = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tx_wtdoorman_RemoveXSS'); // Create new instance for removeXSS class
 		$varsDefinition = $this->string2array($this->confArr['varsDefinition']); // get config for doorman
-		if ($this->confArr['pidInRootline'] > -1) $pid = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $this->confArr['pidInRootline'].','.tslib_cObj::getTreeList($this->confArr['pidInRootline'], 100), 1); // array with all allowed pids
+		if ($this->confArr['pidInRootline'] > -1) $pid = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $this->confArr['pidInRootline'].','.\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer::getTreeList($this->confArr['pidInRootline'], 100), 1); // array with all allowed pids
 		
 		// Let's go
 		if ($this->confArr['pidInRootline'] > -1 && (in_array($GLOBALS['TSFE']->id, $pid) || $this->confArr['pidInRootline'] == 0)) { // if current page is allowed
